@@ -3,6 +3,7 @@ import { add } from "../services/file-operations/add.js";
 import { open } from "../services/file-operations/cat.js";
 import { copy } from "../services/file-operations/copy.js";
 import { move } from "../services/file-operations/move.js";
+import { renameFile } from "../services/file-operations/rename.js";
 
 export async function processInput(input, rl, directory) {
     if (input === "hello") {
@@ -15,6 +16,8 @@ export async function processInput(input, rl, directory) {
         await copy(input, directory);
     } else if (input.startsWith("mv")) {
         await move(input, directory);
+    } else if (input.startsWith("rn")) {
+        await renameFile(input, directory);
     }
     else {
         console.log(`${colorMap.red}Invalid input${colorMap.reset}`);

@@ -16,10 +16,10 @@ export async function copy(input, { currentDir: directory }) {
         const destinationFilePath = path.resolve(directory, destinationDirectory, path.basename(sourceFile));
 
         const sourceExists = await checkPathIfExists(sourceFilePath);
-        if (!sourceExists) throw new Error(`Source file '${sourceFile}' does not exist`);
+        if (!sourceExists) throw new Error("Invalid input");
 
         const destinationExists = await checkPathIfExists(destinationDirectory);
-        if (!destinationExists) throw new Error(`Destination directory '${destinationDirectory}' does not exist`);
+        if (!destinationExists) throw new Error("Invalid input");
 
         const readStream = createReadStream(sourceFilePath);
         const writeStream = createWriteStream(destinationFilePath, { flags: "wx" });
