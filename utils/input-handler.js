@@ -5,6 +5,7 @@ import { copy } from "../services/file-operations/copy.js";
 import { move } from "../services/file-operations/move.js";
 import { renameFile } from "../services/file-operations/rename.js";
 import { ls } from "../services/navigation/ls.js";
+import { up } from "../services/navigation/up.js";
 
 export async function processInput(input, rl, directory) {
     if (input === "hello") {
@@ -21,6 +22,8 @@ export async function processInput(input, rl, directory) {
         await renameFile(input, directory);
     } else if (input === "ls") {
         await ls(directory);
+    } else if (input === "up") {
+        up(directory);
     }
     else {
         console.log(`${colorMap.red}Invalid input${colorMap.reset}`);
