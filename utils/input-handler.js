@@ -6,10 +6,11 @@ import { open } from "../services/file-operations/cat.js";
 import { copy } from "../services/file-operations/copy.js";
 import { move } from "../services/file-operations/move.js";
 import { renameFile } from "../services/file-operations/rename.js";
+import { hash } from "../services/hash/hash.js";
 import { cd } from "../services/navigation/cd.js";
 import { ls } from "../services/navigation/ls.js";
 import { up } from "../services/navigation/up.js";
-import { getInfo } from "../services/os/system-info.js";
+import { getInfo } from "../services/os/os-info.js";
 
 export async function processInput(input, rl, directory) {
     if (input === "hello") {
@@ -39,6 +40,8 @@ export async function processInput(input, rl, directory) {
         process.exit(0);
     } else if (input.startsWith("os")) {
         await getInfo(input, directory);
+    } else if (input.startsWith("hash")) {
+        await hash(input, directory);
     }
     else {
         console.log(`${colorMap.red}Invalid input${colorMap.reset}`);
