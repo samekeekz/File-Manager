@@ -1,4 +1,6 @@
 import { colorMap } from "../colors.js";
+import { compress } from "../services/compress/compress.js";
+import { decompress } from "../services/compress/decompress.js";
 import { add } from "../services/file-operations/add.js";
 import { open } from "../services/file-operations/cat.js";
 import { copy } from "../services/file-operations/copy.js";
@@ -27,6 +29,10 @@ export async function processInput(input, rl, directory) {
         up(directory);
     } else if (input.startsWith("cd")) {
         await cd(input, directory);
+    } else if (input.startsWith("compress")) {
+        await compress(input, directory);
+    } else if (input.startsWith("decompress")) {
+        await decompress(input, directory);
     }
     else {
         console.log(`${colorMap.red}Invalid input${colorMap.reset}`);
