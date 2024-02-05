@@ -33,6 +33,9 @@ export async function processInput(input, rl, directory) {
         await compress(input, directory);
     } else if (input.startsWith("decompress")) {
         await decompress(input, directory);
+    } else if (input === ".exit") {
+        rl.close();
+        process.exit(0);
     }
     else {
         console.log(`${colorMap.red}Invalid input${colorMap.reset}`);
