@@ -19,9 +19,6 @@ export async function open(input, { currentDir: directory }) {
                 reject(err);
             });
             readableStream.on("close", () => {
-                console.log(
-                    `${colorMap.cyan}You are currently in ${directory}${colorMap.reset}`
-                );
                 resolve();
             });
             readableStream.on("data", (chunk) => {

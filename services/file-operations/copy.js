@@ -22,7 +22,7 @@ export async function copy(input, { currentDir: directory }) {
         if (!destinationExists) throw new Error(`Destination directory '${destinationDirectory}' does not exist`);
 
         const readStream = createReadStream(sourceFilePath);
-        const writeStream = createWriteStream(destinationFilePath);
+        const writeStream = createWriteStream(destinationFilePath, { flags: "wx" });
 
         await pipeline(readStream, writeStream);
 
