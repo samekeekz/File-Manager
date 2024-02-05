@@ -9,6 +9,7 @@ import { renameFile } from "../services/file-operations/rename.js";
 import { cd } from "../services/navigation/cd.js";
 import { ls } from "../services/navigation/ls.js";
 import { up } from "../services/navigation/up.js";
+import { getInfo } from "../services/os/system-info.js";
 
 export async function processInput(input, rl, directory) {
     if (input === "hello") {
@@ -36,6 +37,8 @@ export async function processInput(input, rl, directory) {
     } else if (input === ".exit") {
         rl.close();
         process.exit(0);
+    } else if (input.startsWith("os")) {
+        await getInfo(input, directory);
     }
     else {
         console.log(`${colorMap.red}Invalid input${colorMap.reset}`);
