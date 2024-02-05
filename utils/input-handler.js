@@ -1,6 +1,7 @@
 import { colorMap } from "../colors.js";
 import { add } from "../services/file-operations/add.js";
 import { open } from "../services/file-operations/cat.js";
+import { copy } from "../services/file-operations/copy.js";
 
 export async function processInput(input, rl, dir) {
     switch (input) {
@@ -20,8 +21,12 @@ async function processInputWithHandlers(input, dir) {
         case "add":
             await add(input, dir);
             break;
-        case "open":
+        case "cat":
             await open(input, dir);
+            break;
+        case "cp":
+            await copy(input, dir);
+            break;
         default:
             console.log(`${colorMap.red}Invalid input${colorMap.reset}`);
     }
