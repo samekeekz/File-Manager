@@ -11,6 +11,7 @@ import { cd } from "../services/navigation/cd.js";
 import { ls } from "../services/navigation/ls.js";
 import { up } from "../services/navigation/up.js";
 import { getInfo } from "../services/os/os-info.js";
+import { removeFile } from "../services/file-operations/delete.js";
 
 export async function processInput(input, rl, directory) {
     if (input === "hello") {
@@ -25,6 +26,8 @@ export async function processInput(input, rl, directory) {
         await move(input, directory);
     } else if (input.startsWith("rn")) {
         await renameFile(input, directory);
+    } else if (input.startsWith("rm")) {
+        await removeFile(input, directory);
     } else if (input === "ls") {
         await ls(directory);
     } else if (input === "up") {
